@@ -1,0 +1,78 @@
+#===Importar o Streamlit
+import streamlit as st
+
+#===Importar o módulo de carreamento do arquivo
+from carregar_arquivo import carregar_arquivo
+
+#===Importar o módulo dos gráficos
+from graficos import Graficos
+
+#===Configurações da página
+st.set_page_config(
+    page_title='Tempo do Cliente na Empresa',
+    page_icon=':bar_chart:',
+    layout='wide'
+)
+
+st.write(f'**Oi** _{st.session_state.usuario}_, **é bom te ter por aqui!**')
+
+#---Título da página
+st.title('Tempo do Cliente na Empresa')
+st.subheader('Nesta página teremos uma noção de quanto tempo os clientes assinam os serviços da Telco.')
+st.markdown('Pode mos verificar que:\n\n '
+            '- _**32,58%**_ dos clientes recebem os serviços da Telco há 1 ano ou menos, totalizando _**2.295**_ clientes;\n\n '
+            '- _**14,11%**_ dos clientes recebem os serviços da Telco de 1 a 2 anos, totalizando _**994**_ clientes;\n\n'
+            '- _**11,61%**_ dos clientes recebem os serviços da Telco de 2 a 3 anos, totalizando _**818**_ clientes;\n\n'
+            '- _**10,83%**_ dos clientes recebem os serviços da Telco de 3 a 4 anos, totalizando _**763**_ clientes;\n\n'
+            '- _**11,96%**_ dos clientes recebem os serviços da Telco de 4 a 5 anos, totalizando _**842**_ clientes;\n\n'
+            '- _**18,90%**_ dos clientes recebem os serviços da Telco de 5 a 6 anos, totalizando _**1.331**_ clientes;\n\n')
+
+st. divider()
+
+#---Enviar o arquivo
+upload = st.file_uploader(
+    label='Enviar o arquivo',
+    type=['csv', 'xlsx']
+)
+
+#---Carregar o arquivo
+if upload is not None:
+    df = carregar_arquivo(upload)
+
+    #---Selecionar o tipo de grafico
+    grafico = st.selectbox(
+        label='Selecionar o gráfico:',
+        placeholder='Selecione o tipo de gráfico a ser analisado!',
+        options=sorted(['Histograma', 'Pizza']),
+        key='graficos',
+        index=None
+    )
+
+    #---Separar as colunas numericas das categóricas
+    if grafico is not None:
+        if grafico in ('Histograma'):
+            colunas_df = [coluna for coluna in df.columns if df[coluna].dtype != 'str']
+        elif grafico == 'Pizza':
+            colunas_df = [coluna for coluna in df.columns if df[coluna].dtype == 'str']
+
+        #---Obter as colunas da tabela
+        colunas = st.selectbox(
+            label='Selecionar a coluna:',
+            placeholder='Selecione a coluna para a criação do gráfico:',
+            options='Tenure in Months',
+            key='colunas_def',
+            index=None
+        )
+
+        #----Instanciar a classe
+        graficos = Graficos(df, colunas, False)
+
+        #---Mostrar o grafico selecionado
+        if colunas is not None:
+            if grafico == 'Histograma':
+                graficos.histograma_interativo()
+
+            if grafico == 'Pizza':
+                graficos.pizza_interativo()
+
+st.image("C:/Users/User/Documents/PÓS GESTÃO ESTRATÉGICA DE DADOS/02 - DATAVIZ COM PYTHON/PROJETOS_1/PROJETO STREAMLIT/logo_KMA.jpeg", width=1000)
