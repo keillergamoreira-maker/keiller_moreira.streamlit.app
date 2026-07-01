@@ -76,7 +76,7 @@ upload = st.file_uploader(
 )
 
 #===Caminho do seu arquivo local
-caminho_arquivo = r"C:\Users\User\Documents\PÓS GESTÃO ESTRATÉGICA DE DADOS\02 - DATAVIZ COM PYTHON\PROJETOS_1\PROJETO STREAMLIT\Relatorio_Final.txt"
+caminho_arquivo = 'archives/Relatorio_Final.txt'
 
 #===Ler o conteúdo do arquivo para passar ao botão
 try:
@@ -90,8 +90,8 @@ except FileNotFoundError:
 st.download_button(
     label='Baixar',
     data=conteudo_arquivo,              #===Conteúdo real do arquivo enviado aqui
-    file_name='Relatorio_Final.txt',    #===Apenas o nome sugerido para salvar na máquina do usuário
+    file_name='Relatorio_Final.txt',
     mime='text/plain'                   #===Tipo MIME correto para arquivos .txt
 )
 
-st.image("C:/Users/User/Documents/PÓS GESTÃO ESTRATÉGICA DE DADOS/02 - DATAVIZ COM PYTHON/PROJETOS_1/PROJETO STREAMLIT/logo_KMA.jpeg", width=1000)
+st.image('archives/logo_KMA.jpeg', width=1000)

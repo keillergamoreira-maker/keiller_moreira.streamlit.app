@@ -113,4 +113,4 @@ if enviar:
             if sucesso:
                 st.success('E-mail enviado com sucesso!')
 
-st.image("C:/Users/User/Documents/PÓS GESTÃO ESTRATÉGICA DE DADOS/02 - DATAVIZ COM PYTHON/PROJETOS_1/PROJETO STREAMLIT/logo_KMA.jpeg", width=1000)
+st.image("archives/logo_KMA.jpeg", width=1000)

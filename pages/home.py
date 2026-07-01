@@ -42,4 +42,4 @@ if st.sidebar.button('Login', width='stretch'):
     else:
          st.sidebar.warning('Usuário não cadastrado.')
 
-st.image("C:/Users/User/Documents/PÓS GESTÃO ESTRATÉGICA DE DADOS/02 - DATAVIZ COM PYTHON/PROJETOS_1/PROJETO STREAMLIT/logo_KMA.jpeg", width=1000)
+st.image('archives/logo_KMA.jpeg', width=1000)

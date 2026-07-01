@@ -31,4 +31,4 @@ if upload is not None:
     df = carregar_arquivo(upload)
     st.dataframe(df)
 
-st.image("C:/Users/User/Documents/PÓS GESTÃO ESTRATÉGICA DE DADOS/02 - DATAVIZ COM PYTHON/PROJETOS_1/PROJETO STREAMLIT/logo_KMA.jpeg", width=1000)
+st.image('archives/logo_KMA.jpeg', width=1000)
