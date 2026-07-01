@@ -69,11 +69,6 @@ st.markdown('**Análise dos Resultados**\n\n'
             'serviço, além de ser uma tecnologia bem mais avançada, podem garantir maiores lucros e \n'
             'maior abrangência para a empresa.')
 
-#===Adicionar um arquivo
-upload = st.file_uploader(
-    label='Anexo:',
-    type=['txt']
-)
 
 #===Caminho do seu arquivo local
 caminho_arquivo = 'archives/Relatorio_Final.txt'
@@ -88,7 +83,7 @@ except FileNotFoundError:
 
 #===Botão do download corrigido
 st.download_button(
-    label='Baixar',
+    label='Clieque aqui para baixar o relatório',
     data=conteudo_arquivo,              #===Conteúdo real do arquivo enviado aqui
     file_name='Relatorio_Final.txt',
     mime='text/plain'                   #===Tipo MIME correto para arquivos .txt
